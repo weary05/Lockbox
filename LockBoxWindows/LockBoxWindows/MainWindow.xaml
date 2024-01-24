@@ -5,8 +5,75 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LockBoxWindows"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="LockBox" 
+        Height="450"
+        Width="800"
+        MinHeight="450"
+        MinWidth="800"
+        AllowsTransparency="True"
+        Background="Transparent"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None">
+    <Window.Resources>
+        <SolidColorBrush x:Key="BackgroundColour" Color="#303030"/>
+        <Style x:Key="TextBoxStyle" TargetType="TextBox">
+            <Setter Property ="Background" Value="{StaticResource BackgroundColour}"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="SelectionBrush" Value="Blue"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="AcceptsReturn" Value="False"/>
+            <Setter Property="AcceptsTab" Value="False"/>
+            <Setter Property="IsReadOnly" Value="True"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+        </Style>
         
-    </Grid>
+    </Window.Resources>
+    
+    <Border BorderThickness="20" BorderBrush="{StaticResource BackgroundColour}" CornerRadius="20">
+        <Grid Background="{StaticResource BackgroundColour}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition MinWidth="100" MaxWidth="200"/>
+                <ColumnDefinition MinWidth="600"/>
+            </Grid.ColumnDefinitions>
+            
+            <Grid.RowDefinitions>
+                <RowDefinition MaxHeight="20"/>
+                <RowDefinition MaxHeight="30"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="LockBox" Grid.Column="0" Grid.Row="0" Foreground="White" FontWeight="Bold"/>
+
+            <Button Content="X" Foreground="White" Background="Transparent" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Top" Width="20" Height="20" BorderBrush="Transparent" Click="ExitButton_Click"/>
+
+            <Button Content="Edit" Foreground="White" Background="Transparent" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" Click="EditModeToggle" BorderBrush="Transparent" Name="EditModeButton"/>
+
+            <Button Content="Delete" Foreground="White" Background="Transparent" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" Click="DeleteCurrent" BorderBrush="Transparent" Margin="0 0 50 0"/>
+
+            <Button Content="New" Foreground="White" Background="Transparent" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" Click="CreateNewEntry" BorderBrush="Transparent" Margin="0 0 120 0"/>
+
+            <TextBox Grid.Row="1" Grid.Column="0" Style="{StaticResource TextBoxStyle}" Text="Search" IsReadOnly="False"/>
+            
+            <ScrollViewer Grid.Column="0" Grid.Row="2" VerticalScrollBarVisibility="Hidden" BorderBrush="#555">
+                <StackPanel Name="AccountList">
+                </StackPanel>
+            </ScrollViewer>
+
+            <Grid Grid.Column="1" Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition MinWidth="500"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBox Grid.Row="0" Style="{StaticResource TextBoxStyle}" Name="AccountNameBox" Text="name"/>
+                <TextBox Grid.Row="1" Style="{StaticResource TextBoxStyle}" Name="PasswordEntryBox" Text="password"/>
+                <TextBox Grid.Row="2" Style="{StaticResource TextBoxStyle}" Name="ExtraNotesBox" Text="notes" AcceptsTab="True" AcceptsReturn="True"/>
+                
+            </Grid>
+
+        </Grid>
+    </Border>
 </Window>

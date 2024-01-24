@@ -1,0 +1,15 @@
+D:\Github Repositories\Lockbox\LockBoxWindows\LockBoxWindows\bin\Debug\LockBoxWindows.exe.config
+D:\Github Repositories\Lockbox\LockBoxWindows\LockBoxWindows\bin\Debug\LockBoxWindows.exe
+D:\Github Repositories\Lockbox\LockBoxWindows\LockBoxWindows\bin\Debug\LockBoxWindows.pdb
+D:\Github Repositories\Lockbox\LockBoxWindows\LockBoxWindows\obj\Debug\LockBoxWindows.csproj.AssemblyReference.cache
+D:\Github Repositories\Lockbox\LockBoxWindows\LockBoxWindows\obj\Debug\MainWindow.g.cs
+D:\Github Repositories\Lockbox\LockBoxWindows\LockBoxWindows\obj\Debug\App.g.cs
+D:\Github Repositories\Lockbox\LockBoxWindows\LockBoxWindows\obj\Debug\LockBoxWindows_MarkupCompile.cache
+D:\Github Repositories\Lockbox\LockBoxWindows\LockBoxWindows\obj\Debug\LockBoxWindows_MarkupCompile.lref
+D:\Github Repositories\Lockbox\LockBoxWindows\LockBoxWindows\obj\Debug\MainWindow.baml
+D:\Github Repositories\Lockbox\LockBoxWindows\LockBoxWindows\obj\Debug\LockBoxWindows.g.resources
+D:\Github Repositories\Lockbox\LockBoxWindows\LockBoxWindows\obj\Debug\LockBoxWindows.Properties.Resources.resources
+D:\Github Repositories\Lockbox\LockBoxWindows\LockBoxWindows\obj\Debug\LockBoxWindows.csproj.GenerateResource.cache
+D:\Github Repositories\Lockbox\LockBoxWindows\LockBoxWindows\obj\Debug\LockBoxWindows.csproj.CoreCompileInputs.cache
+D:\Github Repositories\Lockbox\LockBoxWindows\LockBoxWindows\obj\Debug\LockBoxWindows.exe
+D:\Github Repositories\Lockbox\LockBoxWindows\LockBoxWindows\obj\Debug\LockBoxWindows.pdb
