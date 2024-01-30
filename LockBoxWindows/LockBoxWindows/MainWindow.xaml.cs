@@ -27,17 +27,18 @@ namespace LockBoxWindows
         const string defaultPassword = "Store Your Passwords Here";
         const string defaultNotes = "Press on new to register a new account\r\nSelect edit to change details for an existing account\r\nSelect delete to remove the currently selected account";
 
-        string EncryptedAccountData = string.Empty;
+        public string EncryptedAccountData = string.Empty;
         string DecryptedAccountData = string.Empty;
-        string Password = "password";
+        string Password = string.Empty;
         
 
-        public MainWindow()
+        public MainWindow(string inPassword)
         {
+            Password = inPassword;
             InitializeComponent();
             EncryptedAccountData = RetrieveData();            
             //GetPasswordFromUser
-            DecryptedAccountData = Decrypt();
+            DecryptedAccountData = Decrypt(EncryptedAccountData, Password);
             ConvertStringToAccounts();
             RefreshList();
         }
@@ -56,15 +57,15 @@ namespace LockBoxWindows
             }
         }
 
-        private string Decrypt()
+        public string Decrypt(string data, string pass)
         {
-            string encrypted = EncryptedAccountData;
+            string encrypted = data;
             byte[] textbytes = Convert.FromBase64String(encrypted);
             AesCryptoServiceProvider endec = new AesCryptoServiceProvider();
             endec.BlockSize = 128;
             endec.KeySize = 256;
             endec.IV = Encoding.UTF8.GetBytes("1a1a1a1a1a1a1a1a");
-            endec.Key = sha256_hash(Password);
+            endec.Key = sha256_hash(pass);
             endec.Padding = PaddingMode.PKCS7;
             endec.Mode = CipherMode.CBC;
             ICryptoTransform icrypt = endec.CreateDecryptor(endec.Key, endec.IV);
@@ -72,15 +73,15 @@ namespace LockBoxWindows
             icrypt.Dispose();
             return System.Text.ASCIIEncoding.ASCII.GetString(enc);
         }
-        private string Encrypt() 
+        public string Encrypt(string data, string pass) 
         {
-            string decrypted = DecryptedAccountData;
+            string decrypted = data;
             byte[] textbytes = ASCIIEncoding.ASCII.GetBytes(decrypted);
             AesCryptoServiceProvider endec = new AesCryptoServiceProvider();
             endec.BlockSize = 128;
             endec.KeySize = 256;
             endec.IV = Encoding.UTF8.GetBytes("1a1a1a1a1a1a1a1a");
-            endec.Key = sha256_hash(Password);
+            endec.Key = sha256_hash(pass);
             endec.Padding = PaddingMode.PKCS7;
             endec.Mode = CipherMode.CBC;
             ICryptoTransform icrypt = endec.CreateEncryptor(endec.Key, endec.IV);
@@ -100,7 +101,7 @@ namespace LockBoxWindows
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
             ConvertDataToString();
-            EncryptedAccountData = Encrypt();
+            EncryptedAccountData = Encrypt(DecryptedAccountData, Password);
 
             SaveData(EncryptedAccountData);
 
@@ -208,18 +209,25 @@ namespace LockBoxWindows
             }
 
         }
+        private void SearchRecords(object sender, RoutedEventArgs e)
+        {
+            RefreshList();
+        }
+
         private void RefreshList()
         {
             AccountList.Children.Clear();
             foreach(Account account in accounts)
             {
-                Button button = new Button();
-                button.Content = account.accountName;
-                button.Foreground = Brushes.White;
-                button.Background = Brushes.Transparent;
-                button.Click += new RoutedEventHandler(OpenAccountData);
-                AccountList.Children.Add(button);
-                
+                if (account.accountName.ToLower().Contains(SearchBox.Text.ToLower()) || SearchBox.Text == "Search" || SearchBox.Text == string.Empty)
+                {
+                    Button button = new Button();
+                    button.Content = account.accountName;
+                    button.Foreground = Brushes.White;
+                    button.Background = Brushes.Transparent;
+                    button.Click += new RoutedEventHandler(OpenAccountData);
+                    AccountList.Children.Add(button);
+                }                
             }
         }
         private void OpenAccountData(object sender, RoutedEventArgs e)

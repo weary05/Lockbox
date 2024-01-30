@@ -13,3 +13,5 @@ D:\Github Repositories\Lockbox\LockBoxWindows\LockBoxWindows\obj\Debug\LockBoxWi
 D:\Github Repositories\Lockbox\LockBoxWindows\LockBoxWindows\obj\Debug\LockBoxWindows.csproj.CoreCompileInputs.cache
 D:\Github Repositories\Lockbox\LockBoxWindows\LockBoxWindows\obj\Debug\LockBoxWindows.exe
 D:\Github Repositories\Lockbox\LockBoxWindows\LockBoxWindows\obj\Debug\LockBoxWindows.pdb
+D:\Github Repositories\Lockbox\LockBoxWindows\LockBoxWindows\obj\Debug\PasswordEntry.g.cs
+D:\Github Repositories\Lockbox\LockBoxWindows\LockBoxWindows\obj\Debug\PasswordEntry.baml

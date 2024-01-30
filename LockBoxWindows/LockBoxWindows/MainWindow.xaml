@@ -54,8 +54,9 @@
 
             <Button Content="Save" Name="SaveButton"  Foreground="White" Background="Transparent" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" Click="SaveAccountData" BorderBrush="Transparent" Margin="0 0 180 0" Visibility="Hidden" />
 
-            <TextBox Grid.Row="1" Grid.Column="0" Style="{StaticResource TextBoxStyle}" Text="Search" IsReadOnly="False"/>
-            
+            <TextBox Grid.Row="1" Grid.Column="0" Style="{StaticResource TextBoxStyle}" Text="Search" IsReadOnly="False" Name="SearchBox" />
+            <Button Grid.Row="1" Grid.Column="0" Foreground="White" Background="Transparent" Click="SearchRecords" HorizontalAlignment="Right" Content="->"/>
+
             <ScrollViewer Grid.Column="0" Grid.Row="2" VerticalScrollBarVisibility="Hidden" BorderBrush="#555">
                 <StackPanel Name="AccountList">
                 </StackPanel>
