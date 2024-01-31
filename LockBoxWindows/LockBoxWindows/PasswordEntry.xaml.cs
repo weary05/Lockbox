@@ -65,39 +65,37 @@ namespace LockBoxWindows
         private void ChangePassword(object sender, RoutedEventArgs e)
         {
             PasswordTextBox.Text = "Enter New Password";
-            TextBox confirm = new TextBox();
-            confirm.Text = "Confirm password";
-            confirm.Margin = new System.Windows.Thickness(0, 40, 0, 0);
-            confirm.Height = 20;
-            confirm.Width = 100;
-            MainGrid.Children.Add(confirm);
+            oldPass.Visibility = Visibility.Visible;
+            confirm.Visibility = Visibility.Visible;
 
-            TextBox oldPass = new TextBox();
-            oldPass.Text = "Enter Old Pass";
-            oldPass.Margin = new System.Windows.Thickness(0, -40, 0, 0);
-            oldPass.Height = 20;
-            oldPass.Width = 100;
-            MainGrid.Children.Add(oldPass);
-
-            ConfirmButton.Click += new RoutedEventHandler(ChangePasswordConfirm);
+            Button confirmButton = new Button();
+            confirmButton.Height= 20;
+            confirmButton.Width= 20;
+            confirmButton.Content = "->";
+            confirmButton.Margin = new Thickness(130,0, 0, 0);
+            
+            MainGrid.Children.Add(confirmButton);
+            MainGrid.Children.Remove(ConfirmButton);
+            confirmButton.Click += new RoutedEventHandler(ChangePasswordConfirm);
                                  
         }
         private void ChangePasswordConfirm(object sender, EventArgs e)
         {
-                string oldPassword = oldPass;
+                string oldPassword = oldPass.Text;
 
                 try
                 {
                     MainWindow newWindow = new MainWindow(oldPassword);
-                    if (confirm == PasswordTextBox.Text)
+                    if (confirm.Text == PasswordTextBox.Text)
                     {
-                        Password = confirm;
+                        Password = confirm.Text;
 
                         string decryptedText = newWindow.Decrypt(newWindow.EncryptedAccountData, oldPassword);
-                        MainWindow newPasswordWindow = new MainWindow(Password);
-                        string newEncryption = newPasswordWindow.Encrypt(decryptedText, Password);
-                        newPasswordWindow.SaveData(newEncryption);
+                        
+                        string newEncryption = newWindow.Encrypt(decryptedText, Password);
+                        newWindow.SaveData(newEncryption);
                         newWindow.Close();
+                        MainWindow newPasswordWindow = new MainWindow(Password);
 
                         newPasswordWindow.Show();
                         this.Close();
