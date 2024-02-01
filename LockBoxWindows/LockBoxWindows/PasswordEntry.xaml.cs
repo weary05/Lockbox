@@ -42,13 +42,20 @@ namespace LockBoxWindows
         private void CreateNewPassword(object sender, RoutedEventArgs e)
         {
             PasswordTextBox.Text = "Enter New Password";
-            TextBox confirm = new TextBox();
-            confirm.Text = "Confirm password";
-            confirm.Margin = new System.Windows.Thickness(0, 40, 0, 0);
-            confirm.Height = 20;
-            confirm.Width = 100;
-            MainGrid.Children.Add(confirm);
+            confirm.Visibility= Visibility.Visible;
 
+            Button confirmButton = new Button();
+            confirmButton.Height = 20;
+            confirmButton.Width = 20;
+            confirmButton.Content = "->";
+            confirmButton.Margin = new Thickness(130, 0, 0, 0);
+            MainGrid.Children.Add(confirmButton);
+            MainGrid.Children.Remove(ConfirmButton);
+            confirmButton.Click += new RoutedEventHandler(ConfirmCreatePassword);
+
+        }
+        private void ConfirmCreatePassword(object sender, RoutedEventArgs e)
+        {
             if (confirm.Text == PasswordTextBox.Text)
             {
                 Password = confirm.Text;

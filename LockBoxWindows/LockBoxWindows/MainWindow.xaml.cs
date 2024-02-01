@@ -3,18 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
-using System.Security.Principal;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace LockBoxWindows
 {
@@ -251,6 +243,11 @@ namespace LockBoxWindows
         public string RetrieveData()
         {
             string fileName = Directory.GetCurrentDirectory() + @"\Data.txt";
+            if (!File.Exists(fileName))
+            {
+                var newfile = File.Create(fileName);
+                newfile.Close();
+            }
             StreamReader reader = new StreamReader(fileName);
             string data = reader.ReadToEnd();
             reader.Close();
