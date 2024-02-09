@@ -28,8 +28,7 @@ namespace LockBoxWindows
         {
             Password = inPassword;
             InitializeComponent();
-            EncryptedAccountData = RetrieveData();            
-            //GetPasswordFromUser
+            EncryptedAccountData = RetrieveData();     
             DecryptedAccountData = Decrypt(EncryptedAccountData, Password);
             ConvertStringToAccounts();
             RefreshList();
